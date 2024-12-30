@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeShare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CodeShare</h1>
+    <textarea id="codeInput" placeholder="Write your code here..."></textarea>
+    <button id="saveButton">Save Code</button>
+    <button id="loadButton">Load Code</button>
+    <div id="output"></div>
+
+    <script>
+        const userId = 'yourUserId';
+        const verification = 'test';
+        const language = 'javascript';
+        const name = 'My Code Snippet';
+
+        document.getElementById('saveButton').addEventListener('click', () => {
+            const code = document.getElementById('codeInput').value;
+            fetch('https://api.juststudio.is-a.dev/cs/', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    authorId: userId,
+                    verification: primary_email_address_id,
+                    code: code,
+                    lang: language,
+                    name: name
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Code saved:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        document.getElementById('loadButton').addEventListener('click', () => {
+            const id = prompt('Enter the code ID:');
+            fetch(`https://api.juststudio.is-a.dev/cs/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('output').innerText = data.code;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
