@@ -47,7 +47,6 @@ body {
 body * {
     margin: 0px;
     padding: 0px;
-    color: white;
 }
 textarea {
     margin-top: 10px;
@@ -73,6 +72,6 @@ textarea {
     border-radius: 10px;
     cursor: pointer;
 }
-#content * {
+#content h1 {
     color: white;
 }
