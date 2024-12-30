@@ -25,6 +25,8 @@ SOFTWARE.
 */
 
 @import url("https://juststudio.is-a.dev/css/style.css");
+@import url("https://juststudio.is-a.dev/css/navbar.css");
+@import url("https://juststudio.is-a.dev/css/themes.css");
 @import url("https://unpkg.com/@teleporthq/teleport-custom-scripts@0.0.29/dist/style.css");
 @import url("https://unpkg.com/animate.css@4.1.1/animate.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
