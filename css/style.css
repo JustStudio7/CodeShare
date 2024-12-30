@@ -62,7 +62,7 @@ textarea {
     max-height: 75%;
     border-radius: 20px;
 }
-button {
+#content button {
     margin-top: 10px;
     margin-bottom: 10px;
     color: black;
