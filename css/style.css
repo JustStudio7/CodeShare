@@ -73,3 +73,6 @@ textarea {
     border-radius: 10px;
     cursor: pointer;
 }
+#content * {
+    color: white;
+}
