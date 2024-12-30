@@ -35,7 +35,6 @@
             const code = document.getElementById('codeInput').value;
             fetch('https://api.juststudio.is-a.dev/cs/', {
                 method: 'PUT',
-                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -60,9 +59,7 @@
 
         document.getElementById('loadButton').addEventListener('click', () => {
             const id = prompt('Enter the code ID:');
-            fetch(`https://api.juststudio.is-a.dev/cs/${id}`, {
-                mode: 'no-cors'
-            })
+            fetch(`https://api.juststudio.is-a.dev/cs/${id}`)
             .then(response => {
                 return response.json();
             })
