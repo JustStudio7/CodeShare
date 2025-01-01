@@ -75,3 +75,10 @@ textarea {
 #content h1 {
     color: white;
 }
+#content {
+    position: relative;
+    z-index: 1;
+}
+.h-logo-link * {
+    position: fixed;
+}
