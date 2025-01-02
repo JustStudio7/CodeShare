@@ -80,6 +80,7 @@ body * {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     resize: none;
+    caret-color: white;
 }
 #content button {
     margin-top: 10px;
