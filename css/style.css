@@ -103,3 +103,13 @@ body * {
 .h-logo-link * {
     position: fixed;
 }
+.btns {
+    display: flex;
+    gap: 5px;
+    width: 79%;
+    margin-top: 130px;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    translate: -50% -50%;
+}
