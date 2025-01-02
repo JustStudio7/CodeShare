@@ -82,16 +82,23 @@ body * {
     resize: none;
     caret-color: white;
 }
-#content button {
+#content button, select {
     margin-top: 10px;
     margin-bottom: 10px;
     color: black;
     background-color: white;
-    border-style: solid;
-    border-color: #90909042;
-    border-width: 2px;
-    border-radius: 10px;
+    border-style: solid !important;
+    border-color: #90909042 !important;
+    border-width: 2px !important;
+    border-radius: 10px !important;
     cursor: pointer;
+    padding-block: 6px;
+    padding-inline: 6px;
+    width: 95px;
+    height: 34px;
+    text-wrap-mode: nowrap;
+    font-family: 'Rubik' !important;
+    transition: 500ms;
 }
 #content h1 {
     color: white;
@@ -112,4 +119,27 @@ body * {
     left: 50%;
     position: fixed;
     translate: -50% -50%;
+}
+select {
+    translate: 0% 10px;
+    width: auto;
+    padding: 0px !important;
+    min-width: 128px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /*background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE;*/
+    padding-left: 5px !important;
+}
+option {
+    background-color: #000000 !important;
+    color: white !important;
+}
+#content button:hover, select:hover {
+    filter: drop-shadow(0px 0px 5px white) !important;
+    -webkit-filter: drop-shadow(0px 0px 5px white) !important;
+}
+#content button:active, select:active {
+    background-color: hsl(256.63deg 88.46% 90.22%);
+    transition: 0ms;
 }
