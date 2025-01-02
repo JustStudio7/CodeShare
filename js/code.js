@@ -1,0 +1,87 @@
+/*
+
+MIT License
+
+Copyright (c) 2025 JustStudio. <https://juststudio.is-a.dev/>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*/
+
+const codeInput = document.getElementById('codeInput');
+const output = document.getElementById('output');
+
+const languageClasses = {
+    'js': 'javascript',
+    'ts': 'typescript',
+    'c': 'c',
+    'c++': 'cpp',
+    'c#': 'csharp',
+    'css': 'css',
+    'go': 'go',
+    'html': 'html',
+    'java': 'java',
+    'json': 'json',
+    'lua': 'lua',
+    'luau_roblox': 'luau',
+    'python': 'python',
+    'text': 'plain'
+};
+
+const syntaxHighlighting = {
+    'javascript': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'black'
+    },
+    'typescript': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'black'
+    },
+    // test
+};
+
+function highlightCode(code, lang) {
+    const tokens = code.split(/(\s+|;|{|}|,|\(|\))/);
+    const highlightedCode = tokens.map(token => {
+        if (token.match(/function/)) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
+        if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
+        if (token.match(/[\w]+/)) return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
+        if (token.match(/[;{}(),]/)) return `<span style="color:${syntaxHighlighting[lang].punctuation}">${token}</span>`;
+        return `<span style="color:${syntaxHighlighting[lang].default}">${token}</span>`;
+    }).join('');
+    return highlightedCode;
+}
+
+codeInput.addEventListener('input', () => {
+    const code = codeInput.value;
+    const langClass = Array.from(codeInput.classList).find(cls => languageClasses[cls]);
+    const lang = langClass ? languageClasses[langClass] : 'text';
+    if (lang !== 'text') {
+      const highlighted = highlightCode(code, lang);
+      output.innerHTML = highlighted;
+    } else {
+      output.innerHTML = code;
+    }
+});
