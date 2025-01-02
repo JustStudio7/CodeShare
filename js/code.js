@@ -26,6 +26,7 @@ SOFTWARE.
 
 const codeInput = document.getElementById('codeInput');
 const output = document.getElementById('output');
+const selectElement = document.querySelector('select');
 
 const languageClasses = {
     'js': 'javascript',
@@ -208,4 +209,9 @@ codeInput.addEventListener('input', () => {
        outputText = code;
     }
     output.innerHTML = outputText.replaceAll('\n', '<br>');
+});
+
+selectElement.addEventListener('change', function() {
+    codeInput.className = '';
+    codeInput.classList.add(selectElement.value);
 });
