@@ -50,27 +50,32 @@ const syntaxHighlighting = {
         'string': 'green',
         'parameter': 'orange',
         'punctuation': 'red',
-        'default': 'black',
-        'keyword': 'yellow'
+        'default': 'white',
+        'keyword': 'yellow',
+        'comment': 'gray'
     },
     'typescript': {
         'function': 'blue',
         'string': 'green',
         'parameter': 'orange',
         'punctuation': 'red',
-        'default': 'black',
-        'keyword': 'yellow'
+        'default': 'white',
+        'keyword': 'yellow',
+        'comment': 'gray'
     },
-    // test
+    // Additional languages can be added here
 };
 
 function highlightCode(code, lang) {
     const tokens = code.split(/(\s+|;|{|}|,|\(|\)|\n)/);
     const highlightedCode = tokens.map(token => {
+        if (token.match(/\/\/.*|\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxHighlighting[lang].comment}">${token}</span>`;
         if (token.match(/function/)) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
         if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
-        if (token.match(/^(const|let|var)$/)) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
-        if (token.match(/^[\w]+$/) && !token.match(/^(const|let|var|function)$/)) {return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;}
+        if (token.match(/^(const|let|var|if|else|for|while|return)$/)) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
+        if (token.match(/^[\w]+$/) && !token.match(/^(const|let|var|function|if|else|for|while|return)$/)) {
+            return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
+        }
         if (token.match(/[;{}(),]/)) return `<span style="color:${syntaxHighlighting[lang].punctuation}">${token}</span>`;
         if (token === '\n') return `<br>`;
         return `<span style="color:${syntaxHighlighting[lang].default}">${token}</span>`;
@@ -83,9 +88,9 @@ codeInput.addEventListener('input', () => {
     const langClass = Array.from(codeInput.classList).find(cls => languageClasses[cls]);
     const lang = langClass ? languageClasses[langClass] : 'text';
     if (lang !== 'text') {
-      const highlighted = highlightCode(code, lang);
-      output.innerHTML = highlighted.replaceAll('\n', '<br>');
+        const highlighted = highlightCode(code, lang);
+        output.innerHTML = highlighted.replaceAll('\n', '<br>');
     } else {
-      output.innerHTML = code;
+        output.innerHTML = code;
     }
 });
