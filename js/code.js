@@ -200,10 +200,12 @@ codeInput.addEventListener('input', () => {
     const code = codeInput.value;
     const langClass = Array.from(codeInput.classList).find(cls => languageClasses[cls]);
     const lang = langClass ? languageClasses[langClass] : 'text';
+    let outputText;
     if (lang !== 'text') {
         const highlighted = highlightCode(code, lang);
-        output.innerHTML = highlighted.replaceAll('\n', '<br>');
+        outputText = highlighted;
     } else {
-        output.innerHTML = code;
+       outputText = code;
     }
+    output.innerHTML = outputText.replaceAll('\n', '<br>').replace(/[^a-zA-Z0-9]/g, (char) => `&#${char.charCodeAt(0)};`);
 });
