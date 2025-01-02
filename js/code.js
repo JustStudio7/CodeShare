@@ -197,7 +197,7 @@ function highlightCode(code, lang) {
 }
 
 codeInput.addEventListener('input', () => {
-    const code = codeInput.value;
+    const code = codeInput.value.replace(/[^a-zA-Z0-9]/g, (char) => `&#${char.charCodeAt(0)};`);
     const langClass = Array.from(codeInput.classList).find(cls => languageClasses[cls]);
     const lang = langClass ? languageClasses[langClass] : 'text';
     let outputText;
@@ -207,5 +207,5 @@ codeInput.addEventListener('input', () => {
     } else {
        outputText = code;
     }
-    output.innerHTML = outputText.replaceAll('\n', '<br>').replace(/[^a-zA-Z0-9]/g, (char) => `&#${char.charCodeAt(0)};`);
+    output.innerHTML = outputText.replaceAll('\n', '<br>');
 });
