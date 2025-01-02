@@ -63,18 +63,131 @@ const syntaxHighlighting = {
         'keyword': 'yellow',
         'comment': 'gray'
     },
-    // Additional languages can be added here
+    'java': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'white',
+        'keyword': 'purple',
+        'comment': 'gray'
+    },
+    'python': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'white',
+        'keyword': 'purple',
+        'comment': 'gray'
+    },
+    'c': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'white',
+        'keyword': 'purple',
+        'comment': 'gray'
+    },
+    'cpp': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'white',
+        'keyword': 'purple',
+        'comment': 'gray'
+    },
+    'csharp': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'white',
+        'keyword': 'purple',
+        'comment': 'gray'
+    },
+    'go': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'white',
+        'keyword': 'purple',
+        'comment': 'gray'
+    },
+    'html': {
+        'tag': 'blue',
+        'attribute': 'orange',
+        'value': 'green',
+        'punctuation': 'red',
+        'default': 'white',
+        'comment': 'gray'
+    },
+    'css': {
+        'selector': 'blue',
+        'property': 'orange',
+        'value': 'green',
+        'punctuation': 'red',
+        'default': 'white',
+        'comment': 'gray'
+    },
+    'json': {
+        'string': 'green',
+        'punctuation': 'red',
+        'default': 'white',
+        'comment': 'gray'
+    },
+    'lua': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'white',
+        'keyword': 'purple',
+        'comment': 'gray'
+    },
+    'luau': {
+        'function': 'blue',
+        'string': 'green',
+        'parameter': 'orange',
+        'punctuation': 'red',
+        'default': 'white',
+        'keyword': 'purple',
+        'comment': 'gray'
+    }
 };
 
 function highlightCode(code, lang) {
     const tokens = code.split(/(\s+|;|{|}|,|\(|\)|\n)/);
     const highlightedCode = tokens.map(token => {
         if (token.match(/\/\/.*|\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxHighlighting[lang].comment}">${token}</span>`;
-        if (token.match(/function/)) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
-        if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
-        if (token.match(/^(const|let|var|if|else|for|while|return)$/)) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
-        if (token.match(/^[\w]+$/) && !token.match(/^(const|let|var|function|if|else|for|while|return)$/)) {
-            return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
+        if (lang === 'javascript' || lang === 'typescript') {
+            if (token.match(/function/)) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
+            if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
+            if (token.match(/^(const|let|var|if|else|for|while|return)$/)) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
+            if (token.match(/^[\w]+$/) && !token.match(/^(const|let|var|function|if|else|for|while|return)$/)) {
+                return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
+            }
+        } else if (lang === 'java' || lang === 'python' || lang === 'c' || lang === 'cpp' || lang === 'csharp' || lang === 'go' || lang === 'lua' || lang === 'luau') {
+            if (token.match(/function/)) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
+            if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
+            if (token.match(/^(public|private|protected|static|void|int|if|else|for|while|return)$/)) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
+            if (token.match(/^[\w]+$/) && !token.match(/^(public|private|protected|static|void|int|function|if|else|for|while|return)$/)) {
+                return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
+            }
+        } else if (lang === 'html') {
+            if (token.match(/<\w+/)) return `<span style="color:${syntaxHighlighting[lang].tag}">${token}</span>`;
+            if (token.match(/(\w+)=/) && !token.match(/<\w+/)) return `<span style="color:${syntaxHighlighting[lang].attribute}">${token}</span>`;
+            if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].value}">${token}</span>`;
+        } else if (lang === 'css') {
+            if (token.match(/^[^{]+(?=\s*{)/)) return `<span style="color:${syntaxHighlighting[lang].selector}">${token}</span>`;
+            if (token.match(/:\s*[^;]+/) && !token.match(/^[^{]+(?=\s*{)/)) return `<span style="color:${syntaxHighlighting[lang].property}">${token}</span>`;
+            if (token.match(/;|{|}/)) return `<span style="color:${syntaxHighlighting[lang].punctuation}">${token}</span>`;
+        } else if (lang === 'json') {
+            if (token.match(/"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
+            if (token.match(/[{}:,]/)) return `<span style="color:${syntaxHighlighting[lang].punctuation}">${token}</span>`;
         }
         if (token.match(/[;{}(),]/)) return `<span style="color:${syntaxHighlighting[lang].punctuation}">${token}</span>`;
         if (token === '\n') return `<br>`;
