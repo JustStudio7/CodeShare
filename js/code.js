@@ -69,6 +69,7 @@ function highlightCode(code, lang) {
         if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
         if (token.match(/[\w]+/)) return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
         if (token.match(/[;{}(),]/)) return `<span style="color:${syntaxHighlighting[lang].punctuation}">${token}</span>`;
+        if (token == '\n') return `<br>`;
         return `<span style="color:${syntaxHighlighting[lang].default}">${token}</span>`;
     }).join('');
     return highlightedCode;
