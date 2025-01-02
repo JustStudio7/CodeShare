@@ -68,12 +68,17 @@ body * {
     color: #BBC1E1;
     line-height: 1.4;
     font-size: 12px;
-    background-color: white;
+    background-color: #ffffff0a;
+    backdrop-filter: blur(8px) saturate(0.76) brightness(0.8);
+    -webkit-backdrop-filter: blur(8px) saturate(0.76) brightness(0.8);
+    border: 2px solid white;
 }
 #codeInput {
     background-color: transparent;
     z-index: 3;
     color: transparent;
+    backdrop-filter: none;
+    resize: none;
 }
 #content button {
     margin-top: 10px;
