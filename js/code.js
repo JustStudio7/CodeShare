@@ -50,26 +50,29 @@ const syntaxHighlighting = {
         'string': 'green',
         'parameter': 'orange',
         'punctuation': 'red',
-        'default': 'black'
+        'default': 'black',
+        'keyword': 'yellow'
     },
     'typescript': {
         'function': 'blue',
         'string': 'green',
         'parameter': 'orange',
         'punctuation': 'red',
-        'default': 'black'
+        'default': 'black',
+        'keyword': 'yellow'
     },
     // test
 };
 
 function highlightCode(code, lang) {
-    const tokens = code.split(/(\s+|;|{|}|,|\(|\))/);
+    const tokens = code.split(/(\s+|;|{|}|,|\(|\)|\n)/);
     const highlightedCode = tokens.map(token => {
         if (token.match(/function/)) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
         if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
-        if (token.match(/[\w]+/)) return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
+        if (token.match(/^(const|let|var)$/)) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
+        if (token.match(/^[\w]+$/) && !token.match(/^(const|let|var|function)$/)) {return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;}
         if (token.match(/[;{}(),]/)) return `<span style="color:${syntaxHighlighting[lang].punctuation}">${token}</span>`;
-        if (token == '\n') return `<br>`;
+        if (token === '\n') return `<br>`;
         return `<span style="color:${syntaxHighlighting[lang].default}">${token}</span>`;
     }).join('');
     return highlightedCode;
