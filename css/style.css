@@ -43,6 +43,7 @@ body {
     padding-top: 20px;
     overflow-x: hidden;
     overflow-y: auto;
+    background-image: linear-gradient(159deg, rgb(10 0 37) 24.00%, rgb(0 0 0) 85.00%);
 }
 body * {
     margin: 0px;
@@ -52,7 +53,7 @@ body * {
     padding: 10px;
     padding-left: 20px;
     border-radius: 20px;
-    z-index: 3;
+    z-index: 2;
     height: 200px;
     width: 79%;
     max-width: 79%;
@@ -67,10 +68,11 @@ body * {
     color: #BBC1E1;
     line-height: 1.4;
     font-size: 12px;
+    background-color: white;
 }
 #codeInput {
     background-color: transparent;
-    z-index: 2;
+    z-index: 3;
     color: transparent;
 }
 #content button {
