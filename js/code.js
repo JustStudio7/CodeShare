@@ -84,7 +84,7 @@ codeInput.addEventListener('input', () => {
     const lang = langClass ? languageClasses[langClass] : 'text';
     if (lang !== 'text') {
       const highlighted = highlightCode(code, lang);
-      output.innerHTML = highlighted;
+      output.innerHTML = highlighted.replaceAll('\n', '<br>');
     } else {
       output.innerHTML = code;
     }
