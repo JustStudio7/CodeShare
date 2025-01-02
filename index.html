@@ -76,10 +76,25 @@ SOFTWARE.
         <script type="module" src="https://juststudio.is-a.dev/js/account.js" defer></script>
         <h1>CodeShare (WORK IN PROGRESS). <a href="https://juststudio.is-a.dev/">made by JustStudio.</a></h1>
         <textarea id="codeInput" placeholder="Write your code here..."></textarea>
-        <div class="btns"><select class="button">  <option value="c">C</option>
-  <option value="cpp">C++</option>
-  <option value="csharp">C#</option>
-<option value="css">CSS</option><option value="go">GO</option><option value="html">HTML</option><option value="java">Java</option><option value="js">JavaScript</option><option value="json">JSON</option><option value="lua">Lua</option><option value="luau">Luau (Roblox)</option><option value="python">Python</option><option value="text" selected="">Plain Text</option><option value="ts">TypeScript</option></select><button id="saveButton" class="button">Save Code</button><button id="loadButton" class="button">Load Code</button></div>
+        <div class="btns">
+            <select class="button">
+                <option value="c">C</option>
+                <option value="c++">C++</option>
+                <option value="c#">C#</option>
+                <option value="css">CSS</option>
+                <option value="go">GO</option>
+                <option value="html">HTML</option>
+                <option value="java">Java</option>
+                <option value="js">JavaScript</option>
+                <option value="json">JSON</option>
+                <option value="lua">Lua</option>
+                <option value="luau_roblox">Luau (Roblox)</option>
+                <option value="python">Python</option>
+                <option value="plain" selected>Plain Text</option>
+                <option value="ts">TypeScript</option>
+            </select>
+            <button id="saveButton" class="button">Upload</button><button id="loadButton" class="button">Load</button>
+        </div>
         <span id="output"></span>
         <script defer>
             const userId = 'yourUserId';
