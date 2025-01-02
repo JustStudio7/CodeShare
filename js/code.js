@@ -178,8 +178,8 @@ function highlightCode(code, lang) {
                 return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
             }
         } else if (lang === 'html') {
-            if (token.match(/<\w+/)) return `<span style="color:${syntaxHighlighting[lang].tag}">${token}</span>`;
-            if (token.match(/(\w+)=/) && !token.match(/<\w+/)) return `<span style="color:${syntaxHighlighting[lang].attribute}">${token}</span>`;
+            if (token.match(/&lt;\w+/)) return `<span style="color:${syntaxHighlighting[lang].tag}">${token}</span>`;
+            if (token.match(/(\w+)=/) && !token.match(/&lt;\w+/)) return `<span style="color:${syntaxHighlighting[lang].attribute}">${token}</span>`;
             if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].value}">${token}</span>`;
         } else if (lang === 'css') {
             if (token.match(/^[^{]+(?=\s*{)/)) return `<span style="color:${syntaxHighlighting[lang].selector}">${token}</span>`;
@@ -197,7 +197,7 @@ function highlightCode(code, lang) {
 }
 
 codeInput.addEventListener('input', () => {
-    const code = codeInput.value.replace(/[^a-zA-Z0-9]/g, (char) => `&#${char.charCodeAt(0)}`);
+    const code = codeInput.value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const langClass = Array.from(codeInput.classList).find(cls => languageClasses[cls]);
     const lang = langClass ? languageClasses[langClass] : 'text';
     let outputText;
