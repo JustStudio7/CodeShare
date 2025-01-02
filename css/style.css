@@ -78,6 +78,7 @@ body * {
     z-index: 3;
     color: transparent;
     backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     resize: none;
 }
 #content button {
