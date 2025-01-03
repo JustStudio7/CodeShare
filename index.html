@@ -151,17 +151,25 @@ SOFTWARE.
         </a>
         <div class="header"></div>
         <script src="/js/code.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
         <script>
-        VANTA.HALO({
-          el: "#content",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00
-        })
+            var setVanta = ()=>{
+            if (window.VANTA) window.VANTA.HALO({
+              el: "#content",
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.00,
+              minWidth: 200.00,
+              baseColor: 0xc8,
+              backgroundColor: 0x0
+            })
+            }
+            _strk.push(function() {
+              setVanta()
+              window.edit_page.Event.subscribe( "Page.beforeNewOneFadeIn", setVanta )
+            })
         </script>
     </div>
 </body>
