@@ -73,6 +73,7 @@ SOFTWARE.
 <body>
     <div id="accounts"></div>
     <div id="content">
+        <canvas id="bg"></canvas>
         <script type="module" src="https://juststudio.is-a.dev/js/account.js" defer></script>
         <h1>CodeShare (WORK IN PROGRESS). <a href="https://juststudio.is-a.dev/">made by JustStudio.</a></h1>
         <textarea id="codeInput" placeholder="Write your code here..."></textarea>
@@ -151,6 +152,18 @@ SOFTWARE.
         </a>
         <div class="header"></div>
         <script src="/js/code.js" defer></script>
+        <script src="three.r134.min.js"></script>
+        <script src="vanta.halo.min.js"></script>
+        <script>
+        VANTA.HALO({
+          el: "#bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00
+        })
+        </script>
     </div>
 </body>
 </html>
