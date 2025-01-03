@@ -160,22 +160,68 @@ const syntaxHighlighting = {
     }
 };
 
+const syntaxVar = {
+    'javascript': /^(true|false|null|const|let|var|if|else|for|while|return|console|this|globalThis|"use strict"|'use strict'|await|async|function|try|catch|new|do|Math|document|window)$/,
+    'typescript': /^(true|false|null|const|let|var|if|else|for|while|return|console|this|globalThis|"use strict"|'use strict'|await|async|function|try|catch|new|do|enum|interface)$/,
+    'java': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
+    'python': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
+    'c': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
+    'cpp': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
+    'csharp': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
+    'go': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
+    'html': '',
+    'css': '',
+    'json': '',
+    'lua': /^(true|false|nil|local|while|function|if|else|for|return|repeat|do|end|not|continue|elseif|in|and|then|math|table|string|break|coroutine|bit32|debug|io|os|package)$/,
+    'luau': /^(true|false|nil|local|while|function|if|else|for|return|repeat|do|end|not|continue|elseif|in|and|then|math|table|string|script|break|coroutine|bit32|debug|os|task|game|Enum|TweenInfo|Axes|CFrame|Color3|Content|ColorSequence|CatalogSearchParams|ColorSequenceKeypoint|DockWidgetPluginGuiInfo|DateTime|Font|Faces|FloatCurveKey|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|OverlapParams|Ray|Rect|Random|Region3|Region3int16|RaycastParams|RotationCurveKey|UDim|UDim2|utf8|vector|Vector2|Vector2int16|Vector3|Vector3int16|workspace|Workspace)$/
+};
+const syntaxFunc = {
+    'javascript': /^(setInterval|setTimeout|alert|addEventListener)$/,
+    'typescript': /^(setInterval|setTimeout)$/,
+    'java': '',
+    'python': '',
+    'c': '',
+    'cpp': '',
+    'csharp': '',
+    'go': '',
+    'html': '',
+    'css': '',
+    'json': '',
+    'lua': /^(basic|_G|_VERSION|assert|collectgarbage|dofile|error|getmetatable|ipairs|load|loadfile|next|pairs|pcall|print|rawequal|rawget|rawlen|rawset|require|select|setmetatable|tonumber|tostring|type|xpcall|bit32.arshift|bit32.band|bit32.bnot|bit32.bor|bit32.btest|bit32.bxor|bit32.extract|bit32.lrotate|bit32.lshift|bit32.replace|bit32.rrotate|bit32.rshift|coroutine.create|coroutine.resume|coroutine.running|coroutine.status|coroutine.wrap|coroutine.yield|debug.debug|debug.getuservalue|debug.gethook|debug.getinfo|debug.getlocal|debug.getmetatable|debug.getregistry|debug.getupvalue|debug.setuservalue|debug.sethook|debug.setlocal|debug.setmetatable|debug.setupvalue|debug.traceback|debug.upvalueid|debug.upvaluejoin|io.close|io.flush|io.input|io.lines|io.open|io.output|io.popen|io.read|io.stderr|io.stdin|io.stdout|io.tmpfile|io.type|io.write|file:close|file:flush|file:lines|file:read|file:seek|file:setvbuf|file:write|math.abs|math.acos|math.asin|math.atan|math.atan2|math.ceil|math.cos|math.cosh|math.deg|math.exp|math.floor|math.fmod|math.frexp|math.huge|math.ldexp|math.log|math.max|math.min|math.modf|math.pi|math.pow|math.rad|math.random|math.randomseed|math.sin|math.sinh|math.sqrt|math.tan|math.tanh|os.clock|os.date|os.difftime|os.execute|os.exit|os.getenv|os.remove|os.rename|os.setlocale|os.time|os.tmpname|package.config|package.cpath|package.loaded|package.loadlib|package.path|package.preload|package.searchers|package.searchpath|string.byte|string.char|string.dump|string.find|string.format|string.gmatch|string.gsub|string.len|string.lower|string.match|string.rep|string.reverse|string.sub|string.upper|table.concat|table.insert|table.pack|table.remove|table.sort|table.unpack)$/,
+    'luau': /^(_G|_VERSION|assert|collectgarbage|error|getmetatable|ipairs|next|pairs|pcall|print|rawequal|rawget|rawlen|rawset|require|select|setmetatable|tonumber|tostring|type|xpcall|bit32.arshift|bit32.band|bit32.bnot|bit32.bor|bit32.btest|bit32.bxor|bit32.extract|bit32.lrotate|bit32.lshift|bit32.replace|bit32.rrotate|bit32.rshift|coroutine.create|coroutine.resume|coroutine.running|coroutine.status|coroutine.wrap|coroutine.yield|math.abs|math.acos|math.asin|math.atan|math.atan2|math.ceil|math.cos|math.cosh|math.deg|math.exp|math.floor|math.fmod|math.frexp|math.huge|math.ldexp|math.log|math.max|math.min|math.modf|math.pi|math.pow|math.rad|math.random|math.randomseed|math.sin|math.sinh|math.sqrt|math.tan|math.tanh|os.clock|os.date|os.difftime|os.execute|os.exit|os.getenv|os.remove|os.rename|os.setlocale|os.time|os.tmpname|string.byte|string.char|string.dump|string.find|string.format|string.gmatch|string.gsub|string.len|string.lower|string.match|string.rep|string.reverse|string.sub|string.upper|table.concat|table.insert|table.pack|table.remove|table.sort|table.unpack|wait|ypcall|spawn|warn|BrickColor|buffer|delay|Delay|ElapsedTime|elapsedTime|gcinfo|getfenv|Instance.new|Instance.fromExisting|loadstring|next|newproxy|tick|time|typeof|unpack|UserSettings|Version|version|Wait)$/
+};
+
 function highlightCode(code, lang) {
     const tokens = code.split(/(\s+|;|{|}|,|\(|\)|\n)/);
     const highlightedCode = tokens.map(token => {
-        if (token.match(/\/\/.*|\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxHighlighting[lang].comment}">${token}</span>`;
         if (lang === 'javascript' || lang === 'typescript') {
-            if (token.match(/function/)) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
+            if (token.match(/\/\/.*|\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxFunctions[lang].comment}">${token}</span>`;
+        } else if (lang === 'html') {
+            if (token.match(/<!--[\s\S]*?-->/)) return `<span style="color:${syntaxFunctions[lang].comment}">${token}</span>`;
+        } else if (lang === 'css') {
+            if (token.match(/\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxFunctions[lang].comment}">${token}</span>`;
+        } else if (lang === 'lua') {
+            if (token.match(/--.*$/)) return `<span style="color:${syntaxFunctions[lang].comment}">${token}</span>`;
+        }
+        if (lang === 'javascript' || lang === 'typescript') {
+            if (token.match(syntaxFunc[lang])) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
             if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
-            if (token.match(/^(const|let|var|if|else|for|while|return)$/)) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
-            if (token.match(/^[\w]+$/) && !token.match(/^(const|let|var|function|if|else|for|while|return)$/)) {
+            if (token.match(syntaxVar[lang])) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
+            if (token.match(/^[\w]+$/) && !token.match(/^(const|let|var|function|if|else|for|while|return)$/) && !token.match(syntaxVar[lang]) && !token.match(syntaxFunc[lang])) {
                 return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
             }
-        } else if (lang === 'java' || lang === 'python' || lang === 'c' || lang === 'cpp' || lang === 'csharp' || lang === 'go' || lang === 'lua' || lang === 'luau') {
+        } else if (lang === 'java' || lang === 'python' || lang === 'c' || lang === 'cpp' || lang === 'csharp' || lang === 'go') {
             if (token.match(/function/)) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
             if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
-            if (token.match(/^(public|private|protected|static|void|int|if|else|for|while|return)$/)) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
-            if (token.match(/^[\w]+$/) && !token.match(/^(public|private|protected|static|void|int|function|if|else|for|while|return)$/)) {
+            if (token.match(syntaxVar[lang])) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
+            if (token.match(/^[\w]+$/) && !token.match(syntaxVar[lang])) {
+                return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
+            }
+        } else if (lang === 'lua' || lang === 'luau') {
+            if (token.match(syntaxFunc[lang])) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
+            if (token.match(/'[^']*'|"[^"]*"/)) return `<span style="color:${syntaxHighlighting[lang].string}">${token}</span>`;
+            if (token.match(syntaxVar[lang])) return `<span style="color:${syntaxHighlighting[lang].keyword}">${token}</span>`;
+            if (token.match(/^[\w]+$/) && !token.match(syntaxVar[lang])) {
                 return `<span style="color:${syntaxHighlighting[lang].parameter}">${token}</span>`;
             }
         } else if (lang === 'html') {
