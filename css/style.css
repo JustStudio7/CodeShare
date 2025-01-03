@@ -143,3 +143,11 @@ option {
     background-color: hsl(256.63deg 88.46% 90.22%);
     transition: 0ms;
 }
+canvas {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
