@@ -161,9 +161,9 @@ const syntaxHighlighting = {
 };
 
 const syntaxVar = {
-    'javascript': /^(true|false|null|const|let|var|if|else|for|while|return|console|this|globalThis|"use strict"|'use strict'|await|async|function|try|catch|new|do|Math|document|window)$/,
-    'typescript': /^(true|false|null|const|let|var|if|else|for|while|return|console|this|globalThis|"use strict"|'use strict'|await|async|function|try|catch|new|do|enum|interface)$/,
-    'java': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
+    'javascript': /^(true|false|null|const|let|var|if|else|for|while|return|console|this|globalThis|"use strict"|'use strict'|await|async|function|try|catch|new|do|import|from|Math|document|window|window.location|window.location.href|window.location.hash|window.location.host|window.location.hostname|window.location.origin|window.location.pathname|window.location.port|window.location.protocol|window.location.search)$/,
+    'typescript': /^(true|false|null|const|let|var|if|else|for|while|return|console|this|globalThis|"use strict"|'use strict'|await|async|function|try|catch|new|do|import|from|enum|interface|throw)$/,
+    'java': /^(true|false|null|public|private|protected|static|void|int|function|if|else|for|while|return|class|System|break|continue|do|switch|case|default|String|boolean|Math|byte|short|char|long|float|double|final|import|extends|new|abstract|interface|enum|implements|try|catch)$/,
     'python': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
     'c': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
     'cpp': /^(public|private|protected|static|void|int|function|if|else|for|while|return)$/,
@@ -176,9 +176,9 @@ const syntaxVar = {
     'luau': /^(true|false|nil|local|while|function|if|else|for|return|repeat|do|end|not|continue|elseif|in|and|then|math|table|string|script|break|coroutine|bit32|debug|os|task|game|Enum|TweenInfo|Axes|CFrame|Color3|Content|ColorSequence|CatalogSearchParams|ColorSequenceKeypoint|DockWidgetPluginGuiInfo|DateTime|Font|Faces|FloatCurveKey|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|OverlapParams|Ray|Rect|Random|Region3|Region3int16|RaycastParams|RotationCurveKey|UDim|UDim2|utf8|vector|Vector2|Vector2int16|Vector3|Vector3int16|workspace|Workspace)$/
 };
 const syntaxFunc = {
-    'javascript': /^(setInterval|setTimeout|alert|addEventListener)$/,
-    'typescript': /^(setInterval|setTimeout)$/,
-    'java': '',
+    'javascript': /^(setInterval|setTimeout|alert|addEventListener|Promise|fetch|.then|.catch|console.log|console.warn|console.info|console.error|window.location.reload|window.location.replace|window.alert|window.open|window.close)$/,
+    'typescript': /^(setInterval|setTimeout|Promise|Error|fetch|.then|.catch|console.log|console.warn|console.info|console.error)$/,
+    'java': '/^(System.out.println|Math.max|Math.min|Math.sqrt|Math.abs|Math.random|sum)$/',
     'python': '',
     'c': '',
     'cpp': '',
