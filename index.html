@@ -156,16 +156,19 @@ SOFTWARE.
         <script>
             
             var setVanta = ()=>{
-                if (window.VANTA) window.VANTA.HALO({
-                  el: "#content",
-                  mouseControls: true,
-                  touchControls: true,
-                  gyroControls: false,
-                  minHeight: 200.00,
-                  minWidth: 200.00,
-                  baseColor: 0xc8,
-                  backgroundColor: 0x0
-                }) else {
+                if (window.VANTA) {
+                      window.VANTA.HALO({
+                      el: "#content",
+                      mouseControls: true,
+                      touchControls: true,
+                      gyroControls: false,
+                      minHeight: window.innerHeight,
+                      minWidth: window.innerWidth,
+                      baseColor: 0xc8,
+                      backgroundColor: 0x0,
+                      size: 0.80
+                    });
+                } else {
                     setTimeout(() => {
                         setVanta()
                     }, 100)
