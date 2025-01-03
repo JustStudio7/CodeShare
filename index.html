@@ -154,28 +154,30 @@ SOFTWARE.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
         <script defer>
-            
-            var setVanta = ()=>{
-                if (window.VANTA) {
-                      window.VANTA.HALO({
-                      el: "#content",
-                      mouseControls: true,
-                      touchControls: true,
-                      gyroControls: false,
-                      minHeight: window.innerHeight,
-                      minWidth: window.innerWidth,
-                      baseColor: 0xc8,
-                      backgroundColor: 0x0,
-                      size: 0.80
-                    });
-                } else {
-                    setTimeout(() => {
-                        setVanta()
-                    }, 100)
+
+            setTimeout(() => {
+                var setVanta = ()=>{
+                    if (window.VANTA) {
+                          window.VANTA.HALO({
+                          el: "#content",
+                          mouseControls: true,
+                          touchControls: true,
+                          gyroControls: false,
+                          minHeight: window.innerHeight,
+                          minWidth: window.innerWidth,
+                          baseColor: 0xc8,
+                          backgroundColor: 0x0,
+                          size: 0.80
+                        });
+                    } else {
+                        setTimeout(() => {
+                            setVanta()
+                        }, 100)
+                    }
                 }
-            }
-            setVanta();
-            setInterval(() => setVanta, 1000);
+                setVanta();
+                setInterval(() => setVanta, 1000);
+            }, 2000)
         
         </script>
     </div>
